@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block content%} 
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<br>
+    {% for tag in tags %}
+    <div class="card" style="width: 18rem;height:8rem;">
+        <div class="card-body">
+          <a href="http://127.0.0.1:8000/tag_post_html/{{tag.id}}" target="blank" class="card-link"> {{tag}}</a>
+          <br>
+          <br>
+          <a href="http://127.0.0.1:8000/tag_delete/{{tag.id}}" class="btn btn-primary">Delete</a>
+              
+        </div>
+      </div>
+      <br> 
+
+    {% endfor%}
+
+
+
+{% endblock %}

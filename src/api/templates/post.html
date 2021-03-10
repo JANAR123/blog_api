@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block content %} 
+      <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+      </head>
+     <br>
+     {% for post in posts %}
+        <div class="card" style="width: 18rem; height: 15rem;" >
+          <div class="card-body">
+            <h5 class="card-title"> {{post.title}}</h5>
+              <br>
+                <a href="http://127.0.0.1:8000/post_detail/{{post.id}}" class="btn">GO</a> 
+                <br>
+                <br>
+                <br>
+                <a href="http://127.0.0.1:8000/post_delete/{{post.id}}" class="btn btn-primary">Delete</a>
+              </div>
+            </div>
+            <br>
+            {% endfor %}
+  
+              
+       
+{% endblock %}
+
+    
