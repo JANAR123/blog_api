@@ -16,7 +16,21 @@ def author_form(request):
             author.save()
             code= ConfirmCode.objects.create(author=author)
             send_to_mail(author.email,code.code)
-    
+            message = "Все ок"
+            return render(request,'reply.html',{"message":message})
+        elif Author.objects.filter(email=request.POST['email'],verified=False) or Author.objects.filter(verified=False,username=request.POST['username']):
+            author=None
+            if Author.objects.filter(email=request.POST["email"]):
+                author=Author.objects.get(email=request.POST["email"])
+            elif Author.objects.filter(username=request.POST['username']):
+                author=Author.objects.get(username=request.POST['username'])  
+            code= ConfirmCode.objects.create(author=author)
+            send_to_mail(author.email,code.code)
+            message = "Все ок"
+            return render(request,'reply.html',{"message":message})      
+        message=save_form.errors
+        return render(request,'reply.html',{"message":message})    
+                
     return render(request,'register.html',{'form':form})
 
 def confirm_email(request,code):
@@ -24,10 +38,12 @@ def confirm_email(request,code):
     message="Ваш код не верен"
     if code:
         if not code.last().confirm:
-            code.last().confirm=True
-            code.last().save()
-            code.last().author.confirm=True
-            code.last().author.save()
+            code=code.last()
+            code.confirm=True
+            code.save()
+            author=code.author
+            author.verified=True
+            author.save()
             message="Ваша почта подверждена"
 
     return render(request,'reply.html',{"message":message})
