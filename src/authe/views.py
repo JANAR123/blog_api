@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from .forms import AuthorForm
+from .forms import AuthorForm,LoginForm
 from .models import Author,ConfirmCode
 from .utils  import send_to_mail
 from django.conf import settings
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import authenticate
 
 # Create your views here.
 
@@ -48,3 +50,12 @@ def confirm_email(request,code):
 
     return render(request,'reply.html',{"message":message})
 
+def login(request):
+    form=LoginForm()
+    if request.method=='POST':
+        user=authenticate(username=request.POST['username'],password=request.POST['password'])
+        if user:
+            auth_login(request,user)
+            return render(request,'reply.html',{"message":"Вы зашли","success":True})
+        return render(request,'reply.html',{"message":"Такой пользователь не найден ","success":True})    
+    return render(request,'login.html',{"form":form})
