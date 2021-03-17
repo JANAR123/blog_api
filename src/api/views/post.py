@@ -53,6 +53,7 @@ def post_form(request):
             save_form.save()
             return redirect("api:post_html")
         return render(request,'post_form.html',{'form':form})
+    return redirect("authe:login")    
 
       
         
