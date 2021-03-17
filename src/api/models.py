@@ -1,4 +1,5 @@
 from django.db import models
+from authe.models import Author,ConfirmCode
 
 # Create your models here.
 
@@ -16,6 +17,7 @@ class Post(models.Model):
     title=models.CharField(max_length=100,verbose_name="Заголовок")
     body=models.TextField(max_length=200,verbose_name="Тело поста")
     tags=models.ManyToManyField(Tag,related_name="post",verbose_name="Теги")
+    author=models.ForeignKey(Author,related_name='posts',on_delete=models.CASCADE)
     
     def __str__(self):
         return f"{self.title}"

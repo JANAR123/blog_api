@@ -1,9 +1,10 @@
 from django.urls import path
 from authe.views import author_form,confirm_email,login
 
+app_name='authe'
 
 urlpatterns = [
      path("register/",author_form),
      path("confirm/<str:code>",confirm_email),
-     path("login/",login)
+     path("login/",login,name=login)
 ]
