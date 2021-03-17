@@ -9,6 +9,8 @@ from rest_framework.generics import ListAPIView,RetrieveAPIView,CreateAPIView,Re
 
 
 
+
+
 class PostListView(ListAPIView):
     serializer_class=PostListSerializers
     queryset=Post.objects.all()
@@ -38,22 +40,26 @@ class PostCreateView(CreateAPIView):
 def post_html(request):
     print(request.user)
     posts=Post.objects.order_by("-id")
-    
     return render(request,'post.html',{'posts':posts})
 
 def post_detail(request,post_id):
     post=Post.objects.get(id=post_id)
     return render(request,'post_detail.html',{'post':post})
 
+
+
+ 
+
 def post_form(request):
-    if request.user.is_authenticate:
-            form=PostForm()
-         if request.method=='POST':
+    if request.user.is_authenticated:
+        form=PostForm()
+        if request.method=='POST':
             save_form=PostForm(request.POST)
             save_form.save()
             return redirect("api:post_html")
         return render(request,'post_form.html',{'form':form})
     return redirect("authe:login")    
+   
 
       
         

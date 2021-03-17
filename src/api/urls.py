@@ -15,7 +15,8 @@ from api.views import (
     post_form,
     tag_form,
     post_delete,
-    tag_delete)
+    tag_delete,
+)
 
 app_name="api"
 urlpatterns = [

@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .forms import AuthorForm,LoginForm
 from .models import Author,ConfirmCode
 from .utils  import send_to_mail
 from django.conf import settings
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import authenticate
+from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -59,3 +60,10 @@ def login(request):
             return render(request,'reply.html',{"message":"Вы зашли","success":True})
         return render(request,'reply.html',{"message":"Такой пользователь не найден ","success":True})    
     return render(request,'login.html',{"form":form})
+
+
+
+def logout_views(request):
+    logout(request)
+    return redirect("api:post_html")
+
