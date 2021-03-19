@@ -33,8 +33,8 @@ def author_form(request):
             return render(request,'reply.html',{"message":message})      
         message=save_form.errors
         return render(request,'reply.html',{"message":message})    
-                
     return render(request,'register.html',{'form':form})
+
 
 def confirm_email(request,code):
     code=ConfirmCode.objects.filter(code=code)
@@ -48,8 +48,8 @@ def confirm_email(request,code):
             author.verified=True
             author.save()
             message="Ваша почта подверждена"
-
     return render(request,'reply.html',{"message":message})
+
 
 def login(request):
     form=LoginForm()
@@ -60,7 +60,6 @@ def login(request):
             return render(request,'reply.html',{"message":"Вы зашли","success":True})
         return render(request,'reply.html',{"message":"Такой пользователь не найден ","success":True})    
     return render(request,'login.html',{"form":form})
-
 
 
 def logout_views(request):

@@ -1,10 +1,11 @@
-
 {% extends 'base.html' %}
+{%  load static %}
+
 
 {% block content %}
 <html lang="en">
 <head>
-    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style_authe.css' %}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,14 +13,19 @@
 </head>
 <body>
     <form method="post">  {% csrf_token %}
-       
-        <h5 class="card-title"> {{form.as_p}}</h5>
-        <input class="btn " type="submit" value="submit">
-        
-    </form>
+        <div class="row  justify-content-center">
+            <div class="col-3">
 
-    
-    
+                <div class="card mb-2">
+                    <h5 class="card-header">Log in</h5>
+                    <div class="card-body">
+                         <h5 class="card-title"> {{form.as_p}}</h5>
+                        <input class="btn " type="submit" value="submit">
+                    </div>
+                </div>  
+             </div>
+        </div>       
+    </form>
 </body>
 </html>
 
