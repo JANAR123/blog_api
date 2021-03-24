@@ -16,6 +16,7 @@ from api.views import (
     tag_form,
     post_delete,
     tag_delete,
+    post_author
 )
 
 app_name="api"
@@ -35,5 +36,6 @@ urlpatterns = [
     path("post_form/",post_form,name="form_html"),
     path("tag_form/",tag_form,name="tag_html"),
     path("post_delete/<int:post_id>",post_delete,name="post_delete"),
-    path("tag_delete/<int:tag_id>",tag_delete)
+    path("tag_delete/<int:tag_id>",tag_delete),
+    path("post_author/",post_author,name="post_author")
 ]

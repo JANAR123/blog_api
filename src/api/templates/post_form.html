@@ -12,12 +12,7 @@
 </head>
 <body>
     <form method="post">  {%csrf_token %}
-        <br>
-        <h5 class="card-title"> {{form.title}}</h5>
-        <br>
-        <h5 class="card-title"> {{form.body}}</h5>
-        <br>
-        <h5 class="card-title"> {{form.tags}}</h5>
+            {{form.as_p}}
         <input class="btn btn-primary" type="submit" value="submit">
       </form>
       <br>

@@ -9,7 +9,7 @@ class PostForm(forms.ModelForm):
     #     return instance   
     class Meta:
         model=Post
-        exclude=("id",)
+        exclude=("id","author")
 
 class TagForm(forms.ModelForm):
      class Meta:

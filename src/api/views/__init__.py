@@ -1,2 +1,2 @@
-from .post import post_html,PostListView,PostDetailView,PostCreateView,post_detail,post_form,post_delete
+from .post import post_html,PostListView,PostDetailView,PostCreateView,post_detail,post_form,post_delete,post_author
 from .tag import tag_post,TagListView,TagCreateView,TagDetailView,tag_html,tag_post_html,tag_form,tag_delete

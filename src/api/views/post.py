@@ -55,7 +55,10 @@ def post_form(request):
         form=PostForm()
         if request.method=='POST':
             save_form=PostForm(request.POST)
-            save_form.save()
+            if save_form.is_valid():
+                note = save_form.save(commit=False)
+                note.author = request.user
+                note.save()
             return redirect("api:post_html")
         return render(request,'post_form.html',{'form':form})
     return redirect("authe:login")    
@@ -68,6 +71,20 @@ def post_form(request):
 def post_delete(request,post_id):
     posts=Post.objects.filter(id=post_id).delete()
     return redirect("api:post_html") 
+
+
+# def post_author(request):
+#     print(request.user)
+#     post=Post.objects.filter(author=request.user)
+#     return render(request,'post.html',{'post':post})
+
+def post_author(request):
+    posts=Post.objects.filter(author=request.user)
+    return render(request,'post.html',{'posts':posts})
+    
+
+    
+
 
 
 
