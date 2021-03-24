@@ -36,7 +36,7 @@
                     <a class="nav-link active" aria-current="page" href="/tag_form/">Tagcreate</a>
                   </li>
                   {% if user.is_authenticated %}
-                    <li>User: {{ user.get_username }}</li1>
+                    <li>User:   {{ user.get_username }}</li1>
                     <li><a  class="nav-link active" aria-current="page" href="/post_author/">My post</a></li>
                     {% else %}
                     <li><a  class="nav-link active" aria-current="page"  href="/authe/register/">Sign up</a></li1>
